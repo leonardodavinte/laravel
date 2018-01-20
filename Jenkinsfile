@@ -9,16 +9,16 @@ node('php'){
     }
     
     stage('Build'){
-        sh 'composer install --prefer-dist --no-dev --ignore-platform-reqs'
+        sh 'composer install --no-scripts --prefer-dist --no-dev --ignore-platform-reqs'
     }
     
     stage('config') {
         parallel(
             'config cache': {
-                sh 'php artisan config:cache'
+                echo 'Tarefa de configuracao'
             },
             'config route': {
-                sh 'php artisan'
+                echo 'Segunda parte da configuracao'
             }
         )
     }
